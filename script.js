@@ -1,4 +1,3 @@
-
 function createStyles() {
     const body = document.getElementById("mainBody");
     const header = document.getElementById("mainHeader");

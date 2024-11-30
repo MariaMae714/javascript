@@ -27,7 +27,7 @@ function applyTheme(background, color, headerText, buttonBg, buttonText, images,
     const header = document.getElementById("mainHeader");
     const buttons = document.getElementById("buttonContainer").querySelectorAll("button");
     const imageContainer = document.getElementById("imageContainer");
-    
+
     body.style.backgroundColor = background;
     body.style.color = color;
     body.style.fontFamily = fontFamily;
@@ -40,16 +40,24 @@ function applyTheme(background, color, headerText, buttonBg, buttonText, images,
     });
 
     imageContainer.innerHTML = "";
-    images.forEach(imgSrc => {
+    images.forEach((imgSrc, index) => {
+        const imgWrapper = document.createElement("div");
+        imgWrapper.style.position = "relative";
+        imgWrapper.style.width = "200px";
+        imgWrapper.style.height = "300px";
+        imgWrapper.style.overflow = "hidden";
+        imgWrapper.style.borderRadius = index === 1 ? "50%" : "10px";
+        imgWrapper.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+
         const img = document.createElement("img");
         img.src = imgSrc;
         img.alt = headerText + " style";
-        img.style.width = "200px";
-        img.style.height = "auto";
-        img.style.margin = "10px";
-        img.style.borderRadius = "10px";
-        img.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
-        imageContainer.appendChild(img);
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.objectFit = "cover";
+
+        imgWrapper.appendChild(img);
+        imageContainer.appendChild(imgWrapper);
     });
 }
 
